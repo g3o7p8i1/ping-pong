@@ -49,6 +49,18 @@
                 android:textSize="35sp">
             </TextView>
 
+            <TextView
+                android:id="@+id/highScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="High Score: "
+                android:textColor="#363A43"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="35sp">
+            </TextView>
+
             <Button
                 android:id="@+id/start_btn"
                 android:layout_width="match_parent"

@@ -3,6 +3,7 @@ import android.animation.ValueAnimator
 import android.view.View
 import android.util.AttributeSet
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -20,7 +21,7 @@ class DrawView  @JvmOverloads constructor(
     private var animator: ValueAnimator? = null
     private var x = (((0..1000).random()) / 10) * 10
     private var y = 200
-    private var speedy = 3
+    private var speedy = 7
     private var speedx = 3
     private var start = 0
     private var score = 0
@@ -28,7 +29,18 @@ class DrawView  @JvmOverloads constructor(
     private var sliderSpeed =0
     var go:Int =3
 
+    private fun saveData()
+    {
+        val sharedPreferances:SharedPreferences = context?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)?: return
+        with(sharedPreferances.edit()){
+            val highScore = sharedPreferances.getInt("HighScore",0)
+            if(score>highScore)
+            {putInt("HighScore",score)
+                Log.v("123","yes")}
+        }
 
+
+    }
 
     init {
 
@@ -69,6 +81,7 @@ class DrawView  @JvmOverloads constructor(
                         speedy = 0
                         speedx=0
                         go=5
+                        saveData()
                         animator?.cancel()
                     }
 
