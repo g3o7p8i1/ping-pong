@@ -36,7 +36,9 @@ class DrawView  @JvmOverloads constructor(
             val highScore = sharedPreferances.getInt("HighScore",0)
             if(score>highScore)
             {putInt("HighScore",score)
-                Log.v("123","yes")}
+                Log.v("123","yes")
+            }
+            apply()
         }
 
 
