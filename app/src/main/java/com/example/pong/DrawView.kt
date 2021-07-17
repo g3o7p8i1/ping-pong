@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.media.MediaPlayer
 import android.util.Log
 import android.view.MotionEvent
 
@@ -21,13 +22,14 @@ class DrawView  @JvmOverloads constructor(
     private var animator: ValueAnimator? = null
     private var x = (((0..1000).random()) / 10) * 10
     private var y = 200
-    private var speedy = 7
+    private var speedy = 5
     private var speedx = 3
     private var start = 0
     private var score = 0
     private var sliderX = 450
     private var sliderSpeed =0
     var go:Int =3
+    var mediaPlayer: MediaPlayer? = MediaPlayer.create(context,R.raw.dropsfx)
 
     private fun saveData()
     {
@@ -74,7 +76,18 @@ class DrawView  @JvmOverloads constructor(
                 {
                     if(x>=sliderX && x<=(sliderX+200))
                     {   start=1
+
+                        if(score==2)
+                            speedy=7
+                        if(score==4)
+                            speedy=9
+                        if(score==8)
+                        {speedy=15
+                        speedx=5}
+                        if(score==12)
+                           speedy=21
                         speedy*=-1
+                        mediaPlayer?.start()
                         y+=speedy
                         score++
                     }
